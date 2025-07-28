@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.nepaltourism.AdminDashboardController">
+    <top>
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="header">
+            <children>
+                <Label fx:id="welcomeLabel" styleClass="header-title" text="Admin Dashboard" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="logoutButton" styleClass="header-button" text="Logout" />
+            </children>
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="20.0">
+            <children>
+                <!-- KPI Dashboard -->
+                <HBox spacing="20.0" styleClass="kpi-section">
+                    <children>
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="kpi-label" text="Total Tourists" />
+                                <Label fx:id="totalTouristsLabel" styleClass="kpi-value" text="0" />
+                            </children>
+                        </VBox>
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="kpi-label" text="Active Guides" />
+                                <Label fx:id="activeGuidesLabel" styleClass="kpi-value" text="0" />
+                            </children>
+                        </VBox>
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="kpi-label" text="Total Bookings" />
+                                <Label fx:id="totalBookingsLabel" styleClass="kpi-value" text="0" />
+                            </children>
+                        </VBox>
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="kpi-label" text="Total Revenue" />
+                                <Label fx:id="totalRevenueLabel" styleClass="kpi-value" text="$0" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Main Content Tabs -->
+                <TabPane fx:id="mainTabPane" styleClass="main-tabs" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                    <tabs>
+                        <!-- Tourists Management Tab -->
+                        <Tab text="Tourists">
+                            <content>
+                                <VBox spacing="15.0">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                            <children>
+                                                <Label styleClass="section-title" text="Tourist Management" />
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <Button fx:id="addTouristButton" styleClass="primary-button" text="Add Tourist" />
+                                            </children>
+                                        </HBox>
+                                        <TableView fx:id="touristsTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+                                            <columns>
+                                                <TableColumn fx:id="touristIdColumn" prefWidth="80.0" text="ID" />
+                                                <TableColumn fx:id="touristNameColumn" prefWidth="150.0" text="Name" />
+                                                <TableColumn fx:id="touristEmailColumn" prefWidth="180.0" text="Email" />
+                                                <TableColumn fx:id="touristPhoneColumn" prefWidth="120.0" text="Phone" />
+                                                <TableColumn fx:id="touristTripsColumn" prefWidth="80.0" text="Trips" />
+                                                <TableColumn fx:id="touristSpentColumn" prefWidth="100.0" text="Total Spent" />
+                                                <TableColumn fx:id="touristStatusColumn" prefWidth="80.0" text="Status" />
+                                                <TableColumn fx:id="touristActionsColumn" prefWidth="120.0" text="Actions" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </Tab>
+
+                        <!-- Guides Management Tab -->
+                        <Tab text="Guides">
+                            <content>
+                                <VBox spacing="15.0">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                            <children>
+                                                <Label styleClass="section-title" text="Guide Management" />
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <Button fx:id="addGuideButton" styleClass="primary-button" text="Add Guide" />
+                                            </children>
+                                        </HBox>
+                                        <TableView fx:id="guidesTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+                                            <columns>
+                                                <TableColumn fx:id="guideIdColumn" prefWidth="80.0" text="ID" />
+                                                <TableColumn fx:id="guideNameColumn" prefWidth="150.0" text="Name" />
+                                                <TableColumn fx:id="guideEmailColumn" prefWidth="180.0" text="Email" />
+                                                <TableColumn fx:id="guideTourAreaColumn" prefWidth="120.0" text="Tour Area" />
+                                                <TableColumn fx:id="guideExperienceColumn" prefWidth="100.0" text="Experience" />
+                                                <TableColumn fx:id="guideRatingColumn" prefWidth="80.0" text="Rating" />
+                                                <TableColumn fx:id="guideAvailabilityColumn" prefWidth="100.0" text="Availability" />
+                                                <TableColumn fx:id="guideActionsColumn" prefWidth="120.0" text="Actions" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </Tab>
+
+                        <!-- Attractions Management Tab -->
+                        <Tab text="Attractions">
+                            <content>
+                                <VBox spacing="15.0">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                            <children>
+                                                <Label styleClass="section-title" text="Attraction Management" />
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <Button fx:id="addAttractionButton" styleClass="primary-button" text="Add Attraction" />
+                                            </children>
+                                        </HBox>
+                                        <TableView fx:id="attractionsTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+                                            <columns>
+                                                <TableColumn fx:id="attractionIdColumn" prefWidth="80.0" text="ID" />
+                                                <TableColumn fx:id="attractionNameColumn" prefWidth="180.0" text="Name" />
+                                                <TableColumn fx:id="attractionRegionColumn" prefWidth="100.0" text="Region" />
+                                                <TableColumn fx:id="attractionCategoryColumn" prefWidth="100.0" text="Category" />
+                                                <TableColumn fx:id="attractionDifficultyColumn" prefWidth="100.0" text="Difficulty" />
+                                                <TableColumn fx:id="attractionDurationColumn" prefWidth="80.0" text="Duration" />
+                                                <TableColumn fx:id="attractionPriceColumn" prefWidth="100.0" text="Price" />
+                                                <TableColumn fx:id="attractionVisitorsColumn" prefWidth="80.0" text="Visitors" />
+                                                <TableColumn fx:id="attractionActionsColumn" prefWidth="120.0" text="Actions" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </Tab>
+
+                        <!-- Bookings Management Tab -->
+                        <Tab text="Bookings">
+                            <content>
+                                <VBox spacing="15.0">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                            <children>
+                                                <Label styleClass="section-title" text="Booking Management" />
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <ComboBox fx:id="bookingStatusFilter" promptText="Filter by Status" styleClass="filter-combo" />
+                                                <Button fx:id="exportBookingsButton" styleClass="secondary-button" text="Export" />
+                                            </children>
+                                        </HBox>
+                                        <TableView fx:id="bookingsTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+                                            <columns>
+                                                <TableColumn fx:id="bookingIdColumn" prefWidth="100.0" text="Booking ID" />
+                                                <TableColumn fx:id="bookingTouristColumn" prefWidth="150.0" text="Tourist" />
+                                                <TableColumn fx:id="bookingGuideColumn" prefWidth="150.0" text="Guide" />
+                                                <TableColumn fx:id="bookingAttractionColumn" prefWidth="180.0" text="Attraction" />
+                                                <TableColumn fx:id="bookingDateColumn" prefWidth="120.0" text="Tour Date" />
+                                                <TableColumn fx:id="bookingStatusColumn" prefWidth="100.0" text="Status" />
+                                                <TableColumn fx:id="bookingPriceColumn" prefWidth="100.0" text="Price" />
+                                                <TableColumn fx:id="bookingActionsColumn" prefWidth="120.0" text="Actions" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </Tab>
+
+                        <!-- Analytics Tab -->
+                        <Tab text="Analytics">
+                            <content>
+                                <ScrollPane fitToWidth="true" styleClass="content-scroll">
+                                    <content>
+                                        <VBox spacing="25.0">
+                                            <children>
+                                                <!-- Additional KPI Cards -->
+                                                <HBox spacing="20.0" styleClass="kpi-section">
+                                                    <children>
+                                                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label styleClass="kpi-label" text="Avg Booking Value" />
+                                                                <Label fx:id="avgBookingValueLabel" styleClass="kpi-value" text="$0" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label styleClass="kpi-label" text="Conversion Rate" />
+                                                                <Label fx:id="conversionRateLabel" styleClass="kpi-value" text="0%" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label styleClass="kpi-label" text="Pending Bookings" />
+                                                                <Label fx:id="pendingBookingsLabel" styleClass="kpi-value" text="0" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label styleClass="kpi-label" text="Customer Satisfaction" />
+                                                                <Label fx:id="customerSatisfactionLabel" styleClass="kpi-value" text="0.0" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Charts Section -->
+                                                <HBox spacing="20.0" styleClass="charts-section">
+                                                    <children>
+                                                        <VBox styleClass="chart-container" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label styleClass="chart-title" text="Monthly Revenue" />
+                                                                <LineChart fx:id="revenueChart" styleClass="chart" VBox.vgrow="ALWAYS">
+                                                                    <xAxis>
+                                                                        <CategoryAxis side="BOTTOM" />
+                                                                    </xAxis>
+                                                                    <yAxis>
+                                                                        <NumberAxis side="LEFT" />
+                                                                    </yAxis>
+                                                                </LineChart>
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox styleClass="chart-container" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label styleClass="chart-title" text="Popular Attractions" />
+                                                                <BarChart fx:id="attractionsChart" styleClass="chart" VBox.vgrow="ALWAYS">
+                                                                    <xAxis>
+                                                                        <CategoryAxis side="BOTTOM" />
+                                                                    </xAxis>
+                                                                    <yAxis>
+                                                                        <NumberAxis side="LEFT" />
+                                                                    </yAxis>
+                                                                </BarChart>
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Regional Distribution Chart -->
+                                                <VBox styleClass="chart-container">
+                                                    <children>
+                                                        <Label styleClass="chart-title" text="Regional Distribution" />
+                                                        <PieChart fx:id="regionalChart" styleClass="chart" VBox.vgrow="ALWAYS" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                    </content>
+                                </ScrollPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+    </center>
+</BorderPane>

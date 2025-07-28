@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.nepaltourism.TouristDashboardController">
+    <top>
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="header">
+            <children>
+                <Label fx:id="welcomeLabel" styleClass="header-title" text="Welcome, Tourist!" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="languageButton" styleClass="header-button" text="नेपाली" />
+                <Button fx:id="emergencyButton" styleClass="emergency-button" text="Emergency" />
+                <Button fx:id="logoutButton" styleClass="header-button" text="Logout" />
+            </children>
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+        </HBox>
+    </top>
+    <center>
+        <TabPane fx:id="mainTabPane" styleClass="main-tabs" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <!-- Attractions Tab -->
+                <Tab fx:id="attractionsTab" text="Explore Attractions">
+                    <content>
+                        <VBox spacing="20.0">
+                            <children>
+                                <!-- Search and Filter Section -->
+                                <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="filter-section">
+                                    <children>
+                                        <TextField fx:id="searchField" promptText="Search attractions..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+                                        <ComboBox fx:id="regionFilter" promptText="Region" styleClass="filter-combo" />
+                                        <ComboBox fx:id="categoryFilter" promptText="Category" styleClass="filter-combo" />
+                                    </children>
+                                </HBox>
+
+                                <!-- Attractions List -->
+                                <ScrollPane fitToWidth="true" styleClass="content-scroll" VBox.vgrow="ALWAYS">
+                                    <content>
+                                        <ListView fx:id="attractionsList" styleClass="attractions-list" />
+                                    </content>
+                                </ScrollPane>
+                            </children>
+                            <padding>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <!-- Bookings Tab -->
+                <Tab fx:id="bookingsTab" text="My Bookings">
+                    <content>
+                        <VBox spacing="20.0">
+                            <children>
+                                <Label styleClass="section-title" text="My Bookings" />
+                                <TableView fx:id="bookingsTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="bookingIdColumn" prefWidth="100.0" text="Booking ID" />
+                                        <TableColumn fx:id="attractionColumn" prefWidth="200.0" text="Attraction" />
+                                        <TableColumn fx:id="guideColumn" prefWidth="150.0" text="Guide" />
+                                        <TableColumn fx:id="dateColumn" prefWidth="120.0" text="Tour Date" />
+                                        <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Status" />
+                                        <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                            <padding>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <!-- Guides Tab -->
+                <Tab fx:id="guidesTab" text="Available Guides">
+                    <content>
+                        <VBox spacing="20.0">
+                            <children>
+                                <Label styleClass="section-title" text="Available Guides" />
+                                <ScrollPane fitToWidth="true" styleClass="content-scroll" VBox.vgrow="ALWAYS">
+                                    <content>
+                                        <ListView fx:id="guidesList" styleClass="guides-list" />
+                                    </content>
+                                </ScrollPane>
+                            </children>
+                            <padding>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <!-- Analytics Tab -->
+                <Tab fx:id="analyticsTab" text="My Analytics">
+                    <content>
+                        <ScrollPane fitToWidth="true" styleClass="content-scroll">
+                            <content>
+                                <VBox spacing="25.0">
+                                    <children>
+                                        <!-- KPI Cards -->
+                                        <HBox spacing="20.0" styleClass="kpi-section">
+                                            <children>
+                                                <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label styleClass="kpi-label" text="Total Spent" />
+                                                        <Label fx:id="totalSpentLabel" styleClass="kpi-value" text="Rs0" />
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label styleClass="kpi-label" text="Total Trips" />
+                                                        <Label fx:id="totalTripsLabel" styleClass="kpi-value" text="0" />
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label styleClass="kpi-label" text="Avg Trip Cost" />
+                                                        <Label fx:id="avgTripCostLabel" styleClass="kpi-value" text="Rs0" />
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label styleClass="kpi-label" text="Completed Trips" />
+                                                        <Label fx:id="completedTripsLabel" styleClass="kpi-value" text="0" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+
+                                        <!-- Charts Section -->
+                                        <HBox spacing="20.0" styleClass="charts-section">
+                                            <children>
+                                                <VBox styleClass="chart-container" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label styleClass="chart-title" text="Spending History" />
+                                                        <LineChart fx:id="spendingChart" styleClass="chart" VBox.vgrow="ALWAYS">
+                                                            <xAxis>
+                                                                <CategoryAxis side="BOTTOM" />
+                                                            </xAxis>
+                                                            <yAxis>
+                                                                <NumberAxis side="LEFT" />
+                                                            </yAxis>
+                                                        </LineChart>
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="chart-container" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label styleClass="chart-title" text="Trip Categories" />
+                                                        <BarChart fx:id="categoryChart" styleClass="chart" VBox.vgrow="ALWAYS">
+                                                            <xAxis>
+                                                                <CategoryAxis side="BOTTOM" />
+                                                            </xAxis>
+                                                            <yAxis>
+                                                                <NumberAxis side="LEFT" />
+                                                            </yAxis>
+                                                        </BarChart>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+
+                                        <!-- Insights Section -->
+                                        <VBox spacing="15.0" styleClass="insights-section">
+                                            <children>
+                                                <Label styleClass="section-title" text="Travel Insights" />
+                                                <VBox fx:id="insightsBox" spacing="10.0" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.nepaltourism.GuideDashboardController">
+    <top>
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="header">
+            <children>
+                <Label fx:id="welcomeLabel" styleClass="header-title" text="Guide Dashboard" />
+                <Region HBox.hgrow="ALWAYS" />
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Label styleClass="availability-label" text="Available:" />
+                        <CheckBox fx:id="availabilityCheckBox" styleClass="availability-checkbox" />
+                    </children>
+                </HBox>
+                <Button fx:id="logoutButton" styleClass="header-button" text="Logout" />
+            </children>
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="20.0">
+            <children>
+                <!-- Status Alert -->
+                <HBox fx:id="statusAlert" alignment="CENTER_LEFT" spacing="10.0" styleClass="alert-info">
+                    <children>
+                        <Label fx:id="statusAlertLabel" styleClass="alert-text" text="You are currently available for new bookings." />
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                    </padding>
+                </HBox>
+
+                <!-- KPI Dashboard -->
+                <HBox spacing="20.0" styleClass="kpi-section">
+                    <children>
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="kpi-label" text="Active Bookings" />
+                                <Label fx:id="activeBookingsLabel" styleClass="kpi-value" text="0" />
+                            </children>
+                        </VBox>
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="kpi-label" text="Total Earnings" />
+                                <Label fx:id="totalEarningsLabel" styleClass="kpi-value" text="Rs0" />
+                            </children>
+                        </VBox>
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="kpi-label" text="Average Rating" />
+                                <Label fx:id="averageRatingLabel" styleClass="kpi-value" text="0.0" />
+                            </children>
+                        </VBox>
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="kpi-label" text="Total Tours" />
+                                <Label fx:id="totalToursLabel" styleClass="kpi-value" text="0" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Main Content Tabs -->
+                <TabPane fx:id="mainTabPane" styleClass="main-tabs" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                    <tabs>
+                        <!-- Bookings Tab -->
+                        <Tab text="My Bookings">
+                            <content>
+                                <VBox spacing="15.0">
+                                    <children>
+                                        <Label styleClass="section-title" text="Assigned Bookings" />
+                                        <TableView fx:id="bookingsTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+                                            <columns>
+                                                <TableColumn fx:id="bookingIdColumn" prefWidth="100.0" text="Booking ID" />
+                                                <TableColumn fx:id="touristColumn" prefWidth="150.0" text="Tourist" />
+                                                <TableColumn fx:id="attractionColumn" prefWidth="180.0" text="Attraction" />
+                                                <TableColumn fx:id="tourDateColumn" prefWidth="120.0" text="Tour Date" />
+                                                <TableColumn fx:id="durationColumn" prefWidth="100.0" text="Duration" />
+                                                <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Status" />
+                                                <TableColumn fx:id="contactColumn" prefWidth="120.0" text="Contact" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </Tab>
+
+                        <!-- Emergency Reports Tab -->
+                        <Tab text="Emergency Reports">
+                            <content>
+                                <VBox spacing="15.0">
+                                    <children>
+                                        <Label styleClass="section-title" text="Emergency Reports" />
+                                        <TableView fx:id="emergencyTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+                                            <columns>
+                                                <TableColumn fx:id="reportIdColumn" prefWidth="100.0" text="Report ID" />
+                                                <TableColumn fx:id="reportTouristColumn" prefWidth="150.0" text="Tourist" />
+                                                <TableColumn fx:id="locationColumn" prefWidth="150.0" text="Location" />
+                                                <TableColumn fx:id="issueColumn" prefWidth="200.0" text="Issue" />
+                                                <TableColumn fx:id="priorityColumn" prefWidth="100.0" text="Priority" />
+                                                <TableColumn fx:id="reportStatusColumn" prefWidth="100.0" text="Status" />
+                                                <TableColumn fx:id="reportActionsColumn" prefWidth="120.0" text="Actions" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                    </padding>
+                                </VBox>
+                            </content>
+                        </Tab>
+
+                        <!-- Profile Tab -->
+                        <Tab text="Profile">
+                            <content>
+                                <ScrollPane fitToWidth="true" styleClass="content-scroll">
+                                    <content>
+                                        <VBox spacing="20.0">
+                                            <children>
+                                                <Label styleClass="section-title" text="Profile Management" />
+                                                <GridPane hgap="20.0" vgap="15.0" styleClass="form-grid">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                                            <children>
+                                                                <Label styleClass="field-label" text="Full Name" />
+                                                                <TextField fx:id="nameField" styleClass="form-field" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                                            <children>
+                                                                <Label styleClass="field-label" text="Email" />
+                                                                <TextField fx:id="emailField" styleClass="form-field" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                                            <children>
+                                                                <Label styleClass="field-label" text="Phone" />
+                                                                <TextField fx:id="phoneField" styleClass="form-field" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                            <children>
+                                                                <Label styleClass="field-label" text="Tour Area" />
+                                                                <TextField fx:id="tourAreaField" styleClass="form-field" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                                                            <children>
+                                                                <Label styleClass="field-label" text="Experience" />
+                                                                <TextField fx:id="experienceField" styleClass="form-field" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                            <children>
+                                                                <Label styleClass="field-label" text="Languages" />
+                                                                <TextField fx:id="languagesField" styleClass="form-field" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </GridPane>
+                                                <HBox spacing="15.0">
+                                                    <children>
+                                                        <Button fx:id="updateProfileButton" styleClass="primary-button" text="Update Profile" />
+                                                        <Button fx:id="resetProfileButton" styleClass="secondary-button" text="Reset" />
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                    </content>
+                                </ScrollPane>
+                            </content>
+                        </Tab>
+
+                        <!-- Analytics Tab -->
+                        <Tab text="Analytics">
+                            <content>
+                                <ScrollPane fitToWidth="true" styleClass="content-scroll">
+                                    <content>
+                                        <VBox spacing="25.0">
+                                            <children>
+                                                <!-- Performance KPIs -->
+                                                <HBox spacing="20.0" styleClass="kpi-section">
+                                                    <children>
+                                                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label styleClass="kpi-label" text="Monthly Earnings" />
+                                                                <Label fx:id="monthlyEarningsLabel" styleClass="kpi-value" text="Rs0" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label styleClass="kpi-label" text="Completed Tours" />
+                                                                <Label fx:id="completedToursLabel" styleClass="kpi-value" text="0" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label styleClass="kpi-label" text="Repeat Customers" />
+                                                                <Label fx:id="repeatCustomersLabel" styleClass="kpi-value" text="0" />
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label styleClass="kpi-label" text="Response Time" />
+                                                                <Label fx:id="responseTimeLabel" styleClass="kpi-value" text="0h" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Charts Section -->
+                                                <HBox spacing="20.0" styleClass="charts-section">
+                                                    <children>
+                                                        <VBox styleClass="chart-container" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label styleClass="chart-title" text="Monthly Earnings" />
+                                                                <LineChart fx:id="earningsChart" styleClass="chart" VBox.vgrow="ALWAYS">
+                                                                    <xAxis>
+                                                                        <CategoryAxis side="BOTTOM" />
+                                                                    </xAxis>
+                                                                    <yAxis>
+                                                                        <NumberAxis side="LEFT" />
+                                                                    </yAxis>
+                                                                </LineChart>
+                                                            </children>
+                                                        </VBox>
+                                                        <VBox styleClass="chart-container" HBox.hgrow="ALWAYS">
+                                                            <children>
+                                                                <Label styleClass="chart-title" text="Tour Performance" />
+                                                                <BarChart fx:id="tourChart" styleClass="chart" VBox.vgrow="ALWAYS">
+                                                                    <xAxis>
+                                                                        <CategoryAxis side="BOTTOM" />
+                                                                    </xAxis>
+                                                                    <yAxis>
+                                                                        <NumberAxis side="LEFT" />
+                                                                    </yAxis>
+                                                                </BarChart>
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Customer Ratings Chart -->
+                                                <VBox styleClass="chart-container">
+                                                    <children>
+                                                        <Label styleClass="chart-title" text="Customer Ratings Distribution" />
+                                                        <PieChart fx:id="ratingsChart" styleClass="chart" VBox.vgrow="ALWAYS" />
+                                                    </children>
+                                                </VBox>
+
+                                                <!-- Performance Insights -->
+                                                <VBox spacing="15.0" styleClass="insights-section">
+                                                    <children>
+                                                        <Label styleClass="section-title" text="Performance Insights" />
+                                                        <VBox fx:id="insightsBox" spacing="10.0" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                            <padding>
+                                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                            </padding>
+                                        </VBox>
+                                    </content>
+                                </ScrollPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+    </center>
+</BorderPane>

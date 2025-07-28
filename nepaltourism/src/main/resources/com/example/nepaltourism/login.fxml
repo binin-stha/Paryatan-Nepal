@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<!--<?import javafx.scene.text.*?>-->
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.nepaltourism.LoginController">
+    <center>
+        <HBox alignment="CENTER" spacing="50.0" styleClass="login-container">
+            <children>
+                <!-- Left side - Welcome section -->
+                <VBox alignment="CENTER" spacing="30.0" styleClass="welcome-section" HBox.hgrow="ALWAYS">
+                    <children>
+                        <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../Downloads/logo1.jpg" />
+                     </image></ImageView>
+                        <VBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <Label styleClass="welcome-title" text="Nepal Tourism" />
+                                <Label styleClass="welcome-subtitle" text="Discover the Beauty of Nepal" />
+                                <Label styleClass="welcome-description" text="Experience breathtaking mountains, rich culture, and unforgettable adventures with our expert guides." textAlignment="CENTER" wrapText="true" />
+                            </children>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                    </padding>
+                </VBox>
+
+                <!-- Right side - Login form -->
+                <VBox alignment="CENTER" spacing="25.0" styleClass="login-form-section">
+                    <children>
+                        <VBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <Label styleClass="form-title" text="Welcome Back!" />
+                                <Label styleClass="form-subtitle" text="Please sign in to your account" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="20.0" styleClass="form-container">
+                            <children>
+                                <Label fx:id="errorLabel" styleClass="error-label" />
+
+                                <VBox spacing="8.0">
+                                    <children>
+                                        <Label styleClass="field-label" text="Email Address" />
+                                        <TextField fx:id="emailField" promptText="Enter your email" styleClass="form-field" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="8.0">
+                                    <children>
+                                        <Label styleClass="field-label" text="Password" />
+                                        <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="form-field" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="8.0">
+                                    <children>
+                                        <Label styleClass="field-label" text="Login As" />
+                                        <ComboBox fx:id="userTypeCombo" maxWidth="1.7976931348623157E308" styleClass="form-field" />
+                                    </children>
+                                </VBox>
+
+                                <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" styleClass="primary-button" text="Sign In" />
+
+                                <HBox alignment="CENTER" spacing="5.0">
+                                    <children>
+                                        <Label styleClass="link-text" text="Don't have an account?" />
+                                        <Hyperlink fx:id="signUpLink" styleClass="link" text="Sign Up" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </HBox>
+    </center>
+</BorderPane>
